@@ -1,0 +1,44 @@
+---
+title: "Locations of Major Colleges in Raleigh-Durham-Chapel Hill NC"
+author: Brian Rooney
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(leaflet,quietly = T, warn.conflicts = F)
+```
+
+
+```{r Show Today Date}
+date_today <- format(Sys.time(), "%A %b %d %Y")
+```
+
+## `r date_today`
+
+```{r Show Colleges on Map}
+lat <- c(36.0014447, 35.7870959, 35.904972)
+lng <- c(-78.9382696, -78.672504, -79.046974)
+college <- c("Duke University","NC State University","UNC at Chapel Hill")
+
+df <- data.frame(lat,lng,college)
+
+leafIcons <- icons(
+  iconUrl = ifelse(df$college  == "Duke University", "http://fanapeel.com/wp-content/uploads/logo_-duke-university-blue-devils-devil-head-d.png",
+                   ifelse(df$college == "NC State University", "http://img00.deviantart.net/719e/i/2009/123/7/c/ncsu_wolfpack_icon_by_clandrigan757.jpg",
+                          "http://mediad.publicbroadcasting.net/p/wunc/files/201604/unc_athletics_logo.jpg"
+                   )
+  ),      
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+
+collegeSites <- c(
+  "<a href='http://www.duke.edu/'>Duke University<br>Durham, NC 27708</a>",
+  "<a href='https://www.ncsu.edu/'>NC State University<br>Raleigh, NC 27695</a>",
+  "<a href='http://www.unc.edu/'>UNC Chapel Hill<br>Chapel Hill, NC 27599</a>"
+)
+
+leaflet(data = df) %>% addTiles() %>%
+  addMarkers(~lng, ~lat, icon = leafIcons, popup = collegeSites)
+```
