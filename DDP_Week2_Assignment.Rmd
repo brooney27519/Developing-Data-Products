@@ -36,9 +36,9 @@ leafIcons <- icons(
 )
 
 collegeSites <- c(
-  "<a href='http://www.duke.edu/'>Duke University<br>Durham, NC 27708</a>",
+  "<a href='https://www.duke.edu/'>Duke University<br>Durham, NC 27708</a>",
   "<a href='https://www.ncsu.edu/'>NC State University<br>Raleigh, NC 27695</a>",
-  "<a href='http://www.unc.edu/'>UNC Chapel Hill<br>Chapel Hill, NC 27599</a>"
+  "<a href='https://www.unc.edu/'>UNC Chapel Hill<br>Chapel Hill, NC 27599</a>"
 )
 
 leaflet(data = df) %>% addTiles() %>%
